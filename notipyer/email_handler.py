@@ -13,13 +13,14 @@ def _check_valid_string(string):
 
 
 def set_email_credentials(email, password):
+    global EMAIL_ID, EMAIL_PASS
     if _check_valid_string(email):
         EMAIL_ID = email
     if _check_valid_string(password):
         EMAIL_PASS = password
 
 
-def send_emails(recipeints, message):
+def send_emails(email, password, recipeints, message):
     global SMTP_GMAIL_URL, SMTP_GMAIL_PORT
     client = smtplib.SMTP(SMTP_GMAIL_URL, SMTP_GMAIL_PORT)
     client.starttls()
@@ -34,4 +35,3 @@ def send_emails(recipeints, message):
 def send_email(client, recipient, message):
     if client is not None:
         client.sendmail(EMAIL_ID, recipient, message)
-
