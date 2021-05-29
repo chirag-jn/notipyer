@@ -42,8 +42,8 @@ class AsyncMethod(object):
 
 def Async(fnc=None, callback=None):
     if fnc is None:
-        def AddAsyncCallback(fnc):
-            return AsyncMethod(fnc, callback)
+        def AddAsyncCallback(fn):
+            return AsyncMethod(fn, callback)
 
         return AddAsyncCallback
     else:
