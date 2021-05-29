@@ -1,4 +1,5 @@
 from .credential_handler import EMAIL_ID, EMAIL_PASS, _set_email_credentials
+from .async_decorator import Async
 import smtplib
 
 
@@ -17,6 +18,7 @@ def set_email_config(email, password):
         _set_email_credentials(email, password)
 
 
+@Async
 def send_emails(recipients, message):
     global SMTP_GMAIL_URL, SMTP_GMAIL_PORT
     client = smtplib.SMTP(SMTP_GMAIL_URL, SMTP_GMAIL_PORT)
@@ -33,6 +35,7 @@ def _send_email(client, recipient, message):
         client.sendmail(EMAIL_ID, recipient, message)
 
 
+@Async
 def send_email(recipient, message):
     global SMTP_GMAIL_URL, SMTP_GMAIL_PORT
     client = smtplib.SMTP(SMTP_GMAIL_URL, SMTP_GMAIL_PORT)
