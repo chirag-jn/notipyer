@@ -9,7 +9,9 @@ pip install notipyer
 ```
 
 ## Email Notifications
-Currently supports Gmail accounts as senders. 
+Notipyer currently supports Gmail accounts as senders. To allow the library to use your gmail account, make the following changes:
+1. Turn off 2-Step authentication. [Ref](https://support.google.com/accounts/answer/1064203)
+2. Turn on "Less Secure App Access" [here](https://myaccount.google.com/intro/security)
 ### Configuration
 ```python
 from notipyer.email_notify import set_email_config
