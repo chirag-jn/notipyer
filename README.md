@@ -1,5 +1,6 @@
 # Notipyer
-Notification triggers for Python
+##### Notification triggers for Python
+Send async email notifications via Python. Get updates/crashlogs from your scripts with ease. 
 
 ## Installation
 ```bash
