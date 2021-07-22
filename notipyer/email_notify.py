@@ -4,7 +4,6 @@ from .async_decorator import Async
 import smtplib
 
 SMTP_GMAIL_URL = 'smtp.gmail.com'
-SMTP_GMAIL_PORT = 587
 
 mail_cred = credentials()
 
@@ -24,12 +23,11 @@ def set_email_config(email, password):
 @Async
 def send_email(subject, message, to_addr, cc_addr=None, bcc_addr=None):
     global mail_cred
-    global SMTP_GMAIL_URL, SMTP_GMAIL_PORT
+    global SMTP_GMAIL_URL
 
     to_addr, cc_addr, bcc_addr = _check_recipients(to_addr, cc_addr, bcc_addr)
 
-    client = smtplib.SMTP(SMTP_GMAIL_URL, SMTP_GMAIL_PORT)
-    client.starttls()
+    client = smtplib.SMTP_SSL(SMTP_GMAIL_URL)
     client = _login_client(client)
     recipients, email_body = _build_email(subject, message, mail_cred.EMAIL_ID, to_addr, cc_addr, bcc_addr)
     client.sendmail(mail_cred.EMAIL_ID, recipients, email_body)
@@ -40,7 +38,7 @@ def _login_client(client):
     try:
         client.login(mail_cred.EMAIL_ID, mail_cred.EMAIL_PASS)
         return client
-    except smtplib.SMTPAuthenticationError as _:
+    except smtplib.SMTPAuthenticationError:
         raise GmailLoginException()
 
 
