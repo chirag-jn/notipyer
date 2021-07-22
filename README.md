@@ -1,5 +1,5 @@
 # Notipyer
-##### Notification triggers for Python
+##### Notification Triggers for Python
 Send async email notifications via Python. Get updates/crashlogs from your scripts with ease. 
 
 ## Installation
@@ -10,15 +10,19 @@ pip install notipyer
 ```
 
 ## Email Notifications
-Notipyer currently supports Gmail accounts as senders. To allow the library to use your gmail account, make the following changes:
-1. Turn off 2-Step authentication. [Ref](https://support.google.com/accounts/answer/1064203)
-2. Turn on "Less Secure App Access" [here](https://myaccount.google.com/intro/security)
+Notipyer currently supports Gmail accounts as senders. To allow the library to use your Gmail account, make the following changes:
+   
+1. Turn on 2-Step authentication. [Ref](https://support.google.com/accounts/answer/185839)
+2. Create an app password. [Ref](https://support.google.com/mail/answer/185833)
+3. While creating an app password, select app as "Other (Custom name)" and enter a name of your choice. 
+4. Use the password obtained from app password for the configuration step below.
+   
 ### Configuration
 ```python
 from notipyer.email_notify import set_email_config
 
 SENDER_EMAIL = 'myemail@gmail.com'
-SENDER_PASS = 'password'
+SENDER_PASS = 'my_app_password'
 set_email_config(SENDER_EMAIL, SENDER_PASS)
 ```
 ### Sending Email

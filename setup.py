@@ -8,7 +8,7 @@ with open("README.md", "r") as fh:
 setup(
     name='notipyer',
     version=version,
-    description='Notification API for Python',
+    description='Notification Triggers for Python',
     long_description=long_description,
     long_description_content_type="text/markdown",
     author='Chirag Jain',
