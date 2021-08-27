@@ -1,11 +1,12 @@
-from .credential_handler import credentials, _set_email_credentials
-from .errors import GmailLoginException, RecipientNotPresentException
-from .async_decorator import Async
+from .credential_handler import _set_email_credentials
+from .utils.errors import GmailLoginException, RecipientNotPresentException
+from .utils.async_decorator import Async
+from notipyer import _get_creds
 import smtplib
 
 SMTP_GMAIL_URL = 'smtp.gmail.com'
 
-mail_cred = credentials()
+mail_cred = _get_creds()
 
 
 def _check_valid_string(string):
