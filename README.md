@@ -1,5 +1,5 @@
 # Notipyer
-##### Notification Triggers for Python
+#### Notification Triggers for Python
 Send async email and slack notifications via Python. Get updates/crashlogs from your scripts with ease. 
 
 ## Installation
