@@ -1,6 +1,6 @@
 from .credential_handler import credentials, _set_email_credentials
-from .errors import GmailLoginException, RecipientNotPresentException
-from .async_decorator import Async
+from .utils.errors import GmailLoginException, RecipientNotPresentException
+from .utils.async_decorator import Async
 import smtplib
 
 SMTP_GMAIL_URL = 'smtp.gmail.com'
