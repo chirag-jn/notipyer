@@ -1,3 +1,6 @@
+from notipyer import __url__ as url
+
+
 class RecipientNotPresentException(Exception):
     def __init__(self):
         message = 'No recipients found.'
@@ -6,5 +9,6 @@ class RecipientNotPresentException(Exception):
 
 class GmailLoginException(Exception):
     def __init__(self):
-        message = 'Either less secure app access is turned off or the Email-Password combination is incorrect.'
+        message = "The App password doesn't work." \
+                 f" Please refer README at {url}"
         super().__init__(message)
