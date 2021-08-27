@@ -49,7 +49,7 @@ For setting up token keys for using slack notifications, follow the wiki page [h
 from notipyer.slack_notify import set_slack_token_config
 
 # Follow the wiki for getting the bot token
-BOT_TOKEN = 'xoxb-2434044948416-2423031317942-oQoMpTPxC8M8q2HxjHAxl7aH' 
+BOT_TOKEN = 'xoxb-12345678990123-1234567890123-abcdefghijklmnopqrstuvwx' 
 set_slack_token_config(BOT_TOKEN)
 ```
 ### Sending Message
