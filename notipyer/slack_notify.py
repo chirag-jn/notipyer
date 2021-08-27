@@ -1,6 +1,8 @@
 from .credential_handler import _set_slack_token_credentials
 from .utils.async_decorator import Async
+from .utils.errors import SlackApiException
 from slack import WebClient
+from slack.errors import SlackApiError
 from notipyer import _get_creds
 
 slack_creds = _get_creds()
@@ -21,7 +23,10 @@ def _get_slack_client():
 
 @Async
 def send_message(channel, text):
-    _get_slack_client().chat_postMessage(
-        channel=channel,
-        text=text
-    )
+    try:
+        _get_slack_client().chat_postMessage(
+            channel=channel,
+            text=text
+        )
+    except SlackApiError as e:
+        raise SlackApiException(e)

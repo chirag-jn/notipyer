@@ -12,3 +12,10 @@ class GmailLoginException(Exception):
         message = "The App password doesn't work." \
                  f" Please refer README at {url}"
         super().__init__(message)
+
+
+class SlackApiException(Exception):
+    def __init__(self, e):
+        message = "The Slack trigger for the bot failed" \
+                 f" with the error: {e.response}"
+        super().__init__(message)
