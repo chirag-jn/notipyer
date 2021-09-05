@@ -15,10 +15,10 @@ def _check_valid_string(string):
     return False
 
 
-def set_email_config(email, password):
+def set_email_config(email, password, sender_name=''):
     global mail_cred
     if _check_valid_string(email) and _check_valid_string(password):
-        _set_email_credentials(mail_cred, email, password)
+        _set_email_credentials(mail_cred, email, password, sender_name)
 
 
 @Async
@@ -30,7 +30,7 @@ def send_email(subject, message, to_addr, cc_addr=None, bcc_addr=None):
 
     client = smtplib.SMTP_SSL(SMTP_GMAIL_URL)
     client = _login_client(client)
-    recipients, email_body = _build_email(subject, message, mail_cred.EMAIL_ID, to_addr, cc_addr, bcc_addr)
+    recipients, email_body = _build_email(subject, message, to_addr, cc_addr, bcc_addr)
     client.sendmail(mail_cred.EMAIL_ID, recipients, email_body)
     client.quit()
 
@@ -64,8 +64,13 @@ def _check_recipients(to_addr, cc_addr, bcc_addr):
     return to_addr, cc_addr, bcc_addr
 
 
-def _build_email(subject, text, from_email, to_emails, cc_emails, bcc_emails):
-    message = "From: %s\r\n" % from_email \
+def _build_email(subject, text, to_emails, cc_emails, bcc_emails):
+    global mail_cred
+    if len(mail_cred.EMAIL_USER) > 0:
+        sender = mail_cred.EMAIL_USER + ' <' + mail_cred.EMAIL_ID + '>'
+    else:
+        sender = mail_cred.EMAIL_ID
+    message = "From: %s\r\n" % (sender) \
               + "To: %s\r\n" % ",".join(to_emails) \
               + "CC: %s\r\n" % ",".join(cc_emails) \
               + "Subject: %s\r\n" % subject \

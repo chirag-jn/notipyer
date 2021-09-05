@@ -24,7 +24,8 @@ from notipyer.email_notify import set_email_config
 
 SENDER_EMAIL = 'myemail@gmail.com'
 SENDER_PASS = 'my_app_password'
-set_email_config(SENDER_EMAIL, SENDER_PASS)
+SENDER_NAME = 'my name'
+set_email_config(SENDER_EMAIL, SENDER_PASS, SENDER_NAME)
 ```
 ### Sending Email
 ```python
