@@ -1,6 +1,6 @@
 from .credential_handler import _set_email_credentials
-from .utils.errors import GmailLoginException, RecipientNotPresentException
-from .utils.async_decorator import Async
+from .errors import GmailLoginException, RecipientNotPresentException
+from .async_decorator import Async
 from notipyer import _get_creds
 import smtplib
 
