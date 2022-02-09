@@ -36,8 +36,9 @@ body = 'My Email Body'
 to_recipients = ['to-email-1@domain.com', 'toemail2@domain.com'] # Can be None
 cc_recipients = ['cc-email-1@domain.com', 'cc-email-2@domain.com'] # Can be None
 bcc_recipients = ['bcc-email-1@domain.com', 'bcc-email-2@domain.com'] # Can be None
+attachment_path = 'path_to_my_file' # Can be None
 
-send_email(subject, body, to_recipients, cc_recipients, bcc_recipients)
+send_email(subject, body, to_recipients, cc_recipients, bcc_recipients, attachment_path)
 ```
 
 ## Slack Notifications
