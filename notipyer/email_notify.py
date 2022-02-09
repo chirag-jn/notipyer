@@ -27,8 +27,7 @@ def set_email_config(email, password, sender_name=''):
         _set_email_credentials(mail_cred, email, password, sender_name)
 
 
-@Async
-def send_email(subject, message, to_addr=None, cc_addr=None, bcc_addr=None, attachment_path=None):
+def _send_email_helper(subject, message, to_addr=None, cc_addr=None, bcc_addr=None, attachment_path=None):
     global mail_cred
     global SMTP_GMAIL_URL
 
@@ -39,6 +38,15 @@ def send_email(subject, message, to_addr=None, cc_addr=None, bcc_addr=None, atta
     recipients, email_body = _build_email(subject, message, to_addr, cc_addr, bcc_addr, attachment_path)
     client.sendmail(mail_cred.EMAIL_ID, recipients, email_body)
     client.quit()
+    return True
+
+
+def send_email(subject, message, to_addr=None, cc_addr=None, bcc_addr=None, attachment_path=None, is_async=True):
+    global _send_email_helper
+    if is_async:
+        _send_email_helper = Async(_send_email_helper)
+
+    return _send_email_helper(subject, message, to_addr, cc_addr, bcc_addr, attachment_path)
 
 
 def _login_client(client):
