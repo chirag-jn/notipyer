@@ -1,6 +1,6 @@
 from .credential_handler import credentials
 
-__version__ = '0.3.2'
+__version__ = '0.3.3'
 __name__ = 'Notipyer'
 __short_desc__ = 'Notification Triggers for Python'
 __url__ = 'https://github.com/chirag-jn/notipyer'

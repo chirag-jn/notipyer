@@ -27,7 +27,7 @@ def set_email_config(email, password, sender_name=''):
         _set_email_credentials(mail_cred, email, password, sender_name)
 
 
-def _send_email_helper(subject, message, to_addr=None, cc_addr=None, bcc_addr=None, attachment_path=None):
+def _send_email_helper(subject, message, to_addr=None, cc_addr=None, bcc_addr=None, attachment_path=None, html_text=None):
     global mail_cred
     global SMTP_GMAIL_URL
 
@@ -35,18 +35,18 @@ def _send_email_helper(subject, message, to_addr=None, cc_addr=None, bcc_addr=No
 
     client = smtplib.SMTP_SSL(SMTP_GMAIL_URL)
     client = _login_client(client)
-    recipients, email_body = _build_email(subject, message, to_addr, cc_addr, bcc_addr, attachment_path)
+    recipients, email_body = _build_email(subject, message, to_addr, cc_addr, bcc_addr, attachment_path, html_text=html_text)
     client.sendmail(mail_cred.EMAIL_ID, recipients, email_body)
     client.quit()
     return True
 
 
-def send_email(subject, message, to_addr=None, cc_addr=None, bcc_addr=None, attachment_path=None, is_async=True):
+def send_email(subject, message, to_addr=None, cc_addr=None, bcc_addr=None, attachment_path=None, html_text=None, is_async=True):
     global _send_email_helper
     if is_async:
         _send_email_helper = Async(_send_email_helper)
 
-    return _send_email_helper(subject, message, to_addr, cc_addr, bcc_addr, attachment_path)
+    return _send_email_helper(subject, message, to_addr, cc_addr, bcc_addr, attachment_path, html_text)
 
 
 def _login_client(client):
@@ -78,7 +78,7 @@ def _check_recipients(to_addr, cc_addr, bcc_addr):
     return to_addr, cc_addr, bcc_addr
 
 
-def _build_email(subject, text, to_emails, cc_emails, bcc_emails, attachment_path):
+def _build_email(subject, text, to_emails, cc_emails, bcc_emails, attachment_path, html_text):
     global mail_cred
     if len(mail_cred.EMAIL_USER) > 0:
         sender = mail_cred.EMAIL_USER + ' <' + mail_cred.EMAIL_ID + '>'
@@ -89,7 +89,10 @@ def _build_email(subject, text, to_emails, cc_emails, bcc_emails, attachment_pat
     message['To'] = ",".join(to_emails)
     message['CC'] = ",".join(cc_emails)
     message['Subject'] = subject
-    message.attach(MIMEText(text, 'plain'))
+    if text is not None:
+        message.attach(MIMEText(text, 'plain'))
+    if html_text is not None:
+        message.attach(MIMEText(html_text, 'html'))
 
     if attachment_path is not None:
         attachment = open(attachment_path, 'rb')
