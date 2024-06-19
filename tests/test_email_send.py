@@ -14,5 +14,13 @@ html = """\
 </html>
 """
 
-print(send_email("my_subject", "my_content", [target_email], attachment_path='credentials.py.sample', is_async=True, html_text=html))
+print(target_email)
+
+print(send_email(subject="my_subject",
+                 message="my_content",
+                 to_addr=[target_email],
+                 reply_to_addr="chiragjn120@gmail.com",
+                 attachment_path='credentials.py.sample',
+                 is_async=True,
+                 html_text=html))
 print('Email Sent')

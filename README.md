@@ -33,6 +33,7 @@ from notipyer.email_notify import send_email
 
 subject = 'My Email Subject'
 body = 'My Email Body'
+reply_to_recipient = 'reply-to-email@domain.com' # Can be None
 to_recipients = ['to-email-1@domain.com', 'toemail2@domain.com'] # Can be None
 cc_recipients = ['cc-email-1@domain.com', 'cc-email-2@domain.com'] # Can be None
 bcc_recipients = ['bcc-email-1@domain.com', 'bcc-email-2@domain.com'] # Can be None
@@ -49,7 +50,7 @@ html = """\
 """ # Can be None
 is_async = True # Sent as an async email only if this parameter is True
 
-send_email(subject, body, to_recipients, cc_recipients, bcc_recipients, attachment_path, html_text, is_async)
+send_email(subject, body, to_recipients, reply_to_recipient, cc_recipients, bcc_recipients, attachment_path, html_text, is_async)
 ```
 
 ## Slack Notifications

@@ -10,4 +10,8 @@ to_recipients = ['to-email-1@domain.com', 'toemail2@domain.com']
 cc_recipients = ['cc-email-1@domain.com', 'cc-email-2@domain.com']
 bcc_recipients = ['bcc-email-1@domain.com', 'bcc-email-2@domain.com']
 
-send_email(subject, body, to_recipients, cc_recipients, bcc_recipients)
+send_email(subject=subject,
+           message=body,
+           to_addr=to_recipients,
+           cc_addr=cc_recipients,
+           bcc_addr=bcc_recipients)
