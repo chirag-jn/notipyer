@@ -24,9 +24,6 @@ def _get_slack_client():
 @Async
 def send_message(channel, text):
     try:
-        _get_slack_client().chat_postMessage(
-            channel=channel,
-            text=text
-        )
+        _get_slack_client().chat_postMessage(channel=channel, text=text)
     except SlackApiError as e:
         raise SlackApiException(e)

@@ -12,9 +12,8 @@ class AsyncCall(object):
 
     def __call__(self, *args, **kwargs):
         self.Thread = threading.Thread(
-            target=self.run,
-            name=self.Callable.__name__,
-            args=args, kwargs=kwargs)
+            target=self.run, name=self.Callable.__name__, args=args, kwargs=kwargs
+        )
         self.Thread.start()
         return self
 
@@ -42,6 +41,7 @@ class AsyncMethod(object):
 
 def Async(fnc=None, callback=None):
     if fnc is None:
+
         def AddAsyncCallback(fn):
             return AsyncMethod(fn, callback)
 
